@@ -40,12 +40,21 @@
                 const rows = clients.map(client => {
                     const updateButton = createButton('Atualizar', 'warning')
                     const removeButton = createButton('Excluir', 'danger')
+                    removeButton.click(() => removeClient(client))
 
                     return $('<tr>')
                         .append($('<td>').append(client.name))
                         .append($('<td>').append(updateButton).append(removeButton))
                 })
                 $('#clientsRows').html(rows)
+            }
+
+            const removeClient = client => {
+                $.ajax({
+                    methodo: 'DELETE',
+                    url: `${API}/clients/${client._id}`,
+                    success: getClients
+                })
             }
 
             const getClients = () => {
