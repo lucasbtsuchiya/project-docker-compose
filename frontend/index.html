@@ -31,11 +31,29 @@
         
         <script>
             const API = 'http://192.168.0.130:3000'
+            
+            const createButton = (label, type) => {
+                return $('<button>').addClass(`btn btn-${type}`).html(label)
+            }
+
+            const renderRows = clients => {
+                const rows = clients.map(clients => {
+                    const updateButton = createButton('Atualizar', 'warning')
+                    const removeButton = createButton('Excluir', 'danger')
+
+                    return $('<tr>')
+                        .append($('<td>').append(client.name))
+                        .append($('<td>').append(updateButton).append(removeButton))
+                })
+                $('#clientsRows').html(rows)
+            }
+
             const getClients = () => {
                 $.ajax({
                     url: `${API}/clients`,
                     success: clients => {
-                        console.log(clients)
+                        renderRows(clients);
+                        console.log(clients);
                     }
                 })
             }
