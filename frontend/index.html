@@ -40,7 +40,7 @@
                 const rows = clients.map(client => {
                     const updateButton = createButton('Atualizar', 'warning')
                     
-                    const removeButton = createButton('Excluir', 'danger');
+                    const removeButton = createButton('Excluir', 'danger')
                     removeButton.click(() => removeClient(client))
 
                     return $('<tr>')
@@ -52,7 +52,7 @@
 
             const removeClient = client => {
                 $.ajax({
-                    methodo: 'DELETE',
+                    method: 'DELETE',
                     url: `${API}/clients/${client._id}`,
                     success: getClients
                 })
