@@ -39,6 +39,7 @@
             const renderRows = clients => {
                 const rows = clients.map(client => {
                     const updateButton = createButton('Atualizar', 'warning')
+                    
                     const removeButton = createButton('Excluir', 'danger');
                     removeButton.click(() => removeClient(client))
 
